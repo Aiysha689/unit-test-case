@@ -1,0 +1,36 @@
+import unittest
+from datetime import date
+from your_code import (
+    CapuletEngine,
+    SternmanEngine,
+    WilloughbyEngine,
+    SpindlerBattery,
+    NubbinBattery,
+)
+
+class EngineTests(unittest.TestCase):
+    def test_capulet_engine_needs_service(self):
+        engine = CapuletEngine("Capulet Engine", last_service_mileage=50000, current_mileage=55000)
+        self.assertTrue(engine.needs_service())
+
+    def test_sternman_engine_needs_service(self):
+        engine = SternmanEngine("Sternman Engine", warning_light_on=True)
+        self.assertTrue(engine.needs_service())
+
+    def test_willoughby_engine_needs_service(self):
+        engine = WilloughbyEngine("Willoughby Engine", last_service_mileage=80000, current_mileage=85000)
+        self.assertTrue(engine.needs_service())
+
+class BatteryTests(unittest.TestCase):
+    def test_spindler_battery_needs_service(self):
+        today = date.today()
+        battery = SpindlerBattery("Spindler Battery", last_service_date=today, current_date=today)
+        self.assertTrue(battery.needs_service())
+
+    def test_nubbin_battery_needs_service(self):
+        today = date.today()
+        battery = NubbinBattery("Nubbin Battery", last_service_date=today, current_date=today)
+        self.assertTrue(battery.needs_service())
+
+if __name__ == '__main__':
+    unittest.main()
